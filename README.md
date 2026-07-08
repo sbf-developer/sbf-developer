@@ -34,8 +34,7 @@ I build software, AI experiments, automation tools, and clean web apps.
 
 ### GitHub
 
-<img height="165" src="https://github-readme-stats.vercel.app/api?username=sbf-developer&show_icons=true&theme=transparent&hide_border=true" />
-<img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=sbf-developer&layout=compact&theme=transparent&hide_border=true" />
+<a href="https://github.com/sbf-developer">@sbf-developer</a>
 
 ---
 
