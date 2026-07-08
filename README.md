@@ -28,7 +28,7 @@ I build software, AI experiments, automation tools, and clean web apps.
 
 ### Tech
 
-<img src="https://skillicons.dev/icons?i=cpp,js,nodejs,ts,react,nextjs,python,postgres,sql,sqlite,html,css,git,github" />
+<img src="https://skillicons.dev/icons?i=ts,react,nextjs,nodejs,python,cpp,postgres,git,github" />
 
 ---
 
