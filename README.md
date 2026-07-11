@@ -2,7 +2,7 @@
 
 # Scott Brodie Forsyth
 
-I build software, AI experiments, automation tools, and clean web applications.
+Building, learning, and shipping.
 
 <a href="https://sbf-developer.github.io/">Contact</a>
 
@@ -17,9 +17,5 @@ I build software, AI experiments, automation tools, and clean web applications.
 ### Languages
 
 <img src="./profile/languages.svg" alt="Most used languages" />
-
----
-
-Building, learning, and shipping.
 
 </div>
