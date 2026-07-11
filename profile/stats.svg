@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="450" height="120" viewBox="0 0 450 120">
+  <rect width="450" height="120" fill="transparent"/>
+  <text x="225" y="55" text-anchor="middle" fill="#888888" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">GitHub activity stats</text>
+  <text x="225" y="78" text-anchor="middle" fill="#666666" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Run Actions workflow to generate</text>
+</svg>
