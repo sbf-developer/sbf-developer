@@ -17,14 +17,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Generate GitHub statistics
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: stats
-          options: username=sbf-developer&show_icons=true&hide_border=true&theme=transparent
-          path: profile/stats.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Generate language statistics
         uses: stats-organization/github-readme-stats-action@v2
         with:

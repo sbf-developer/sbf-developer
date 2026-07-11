@@ -28,12 +28,6 @@ I build software, AI experiments, automation tools, and clean web applications.
 
 ---
 
-### GitHub Activity
-
-<img src="./profile/stats.svg" alt="GitHub statistics" />
-
----
-
 Building, learning, and shipping.
 
 </div>
