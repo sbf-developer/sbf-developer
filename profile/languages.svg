@@ -1,5 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="120" viewBox="0 0 300 120">
-  <rect width="300" height="120" fill="transparent"/>
-  <text x="150" y="55" text-anchor="middle" fill="#888888" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14">Language stats</text>
-  <text x="150" y="78" text-anchor="middle" fill="#666666" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Run Actions workflow to generate</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="184" viewBox="0 0 300 184">
+  <rect width="300" height="184" rx="4.5" fill="#0d1117" stroke="#30363d"/>
+  <text x="20" y="24" fill="#c9d1d9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Most Used Languages</text>
+  <text x="20" y="44" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Python</text>
+  <text x="280" y="44" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">53.31%</text>
+  <rect x="20" y="48" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="48" width="138.6" height="8" rx="4" fill="#3572A5"/>
+  <text x="20" y="62" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">TypeScript</text>
+  <text x="280" y="62" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">16.59%</text>
+  <rect x="20" y="66" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="66" width="43.1" height="8" rx="4" fill="#3178c6"/>
+  <text x="20" y="80" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">JavaScript</text>
+  <text x="280" y="80" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">11.75%</text>
+  <rect x="20" y="84" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="84" width="30.6" height="8" rx="4" fill="#f1e05a"/>
+  <text x="20" y="98" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">TeX</text>
+  <text x="280" y="98" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">6.58%</text>
+  <rect x="20" y="102" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="102" width="17.1" height="8" rx="4" fill="#3D6117"/>
+  <text x="20" y="116" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">HTML</text>
+  <text x="280" y="116" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">5.69%</text>
+  <rect x="20" y="120" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="120" width="14.8" height="8" rx="4" fill="#e34c26"/>
+  <text x="20" y="134" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">CSS</text>
+  <text x="280" y="134" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">3.28%</text>
+  <rect x="20" y="138" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="138" width="8.5" height="8" rx="4" fill="#563d7c"/>
+  <text x="20" y="152" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Kotlin</text>
+  <text x="280" y="152" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">1.57%</text>
+  <rect x="20" y="156" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="156" width="4.1" height="8" rx="4" fill="#A97BFF"/>
+  <text x="20" y="170" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Rust</text>
+  <text x="280" y="170" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">1.03%</text>
+  <rect x="20" y="174" width="260" height="8" rx="4" fill="#161b22"/>
+  <rect x="20" y="174" width="2.7" height="8" rx="4" fill="#dea584"/>
 </svg>
