@@ -4,9 +4,7 @@
 
 I build software, AI experiments, automation tools, and clean web applications.
 
-<a href="https://sbf-developer.github.io/">Website</a>
-&nbsp;·&nbsp;
-<a href="https://github.com/sbf-developer">GitHub</a>
+<a href="https://sbf-developer.github.io/">Contact</a>
 
 ---
 
