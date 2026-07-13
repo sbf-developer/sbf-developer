@@ -2,8 +2,6 @@ Building, learning, and shipping - <a href="https://sbf-developer.github.io/">co
 
 ---
 
-### Tech
-
 <img src="https://skillicons.dev/icons?i=ts,js,react,nextjs,nodejs,python,cpp,postgres,html,css,git,github" alt="Technology icons" />
 
 ---
