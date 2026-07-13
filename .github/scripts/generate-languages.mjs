@@ -164,45 +164,27 @@ async function main() {
   const bottomPadding = 20;
   const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
 
-  const frame = 4;
-  const outerInset = 1;
-  const innerWidth = cardWidth - frame * 2;
-  const innerHeight = cardHeight - frame * 2;
+  const radius = 14;
+  const border = 3;
+  const innerRadius = radius - border;
 
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages">
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages" shape-rendering="geometricPrecision">
   <defs>
-    <linearGradient id="metalEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="12%" stop-color="#eef1f5"/>
-      <stop offset="30%" stop-color="#9aa4b2"/>
-      <stop offset="48%" stop-color="#d8dde4"/>
-      <stop offset="66%" stop-color="#707b8a"/>
-      <stop offset="84%" stop-color="#c3cad3"/>
-      <stop offset="100%" stop-color="#4f5864"/>
+    <linearGradient id="metalBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="28%" stop-color="#b6bec8"/>
+      <stop offset="52%" stop-color="#eef1f4"/>
+      <stop offset="78%" stop-color="#8b96a3"/>
+      <stop offset="100%" stop-color="#6d7784"/>
     </linearGradient>
-    <linearGradient id="metalRim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6b7480"/>
-      <stop offset="100%" stop-color="#3f4650"/>
-    </linearGradient>
-    <linearGradient id="metalHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-      <stop offset="55%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="metalSheen" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#667080" flood-opacity="0.32"/>
+    <filter id="softShadow" x="-6%" y="-6%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#94a3b8" flood-opacity="0.2"/>
     </filter>
   </defs>
-  <rect x="${outerInset}" y="${outerInset}" width="${cardWidth - outerInset * 2}" height="${cardHeight - outerInset * 2}" rx="15" fill="url(#metalRim)" filter="url(#cardShadow)"/>
-  <rect x="${outerInset + 1}" y="${outerInset + 1}" width="${cardWidth - (outerInset + 1) * 2}" height="${cardHeight - (outerInset + 1) * 2}" rx="14" fill="url(#metalEdge)"/>
-  <rect x="${frame}" y="${frame}" width="${innerWidth}" height="${innerHeight}" rx="10" fill="#ffffff" stroke="#b8c0ca" stroke-width="1"/>
-  <rect x="${frame + 1}" y="${frame + 1}" width="${innerWidth - 2}" height="34" rx="9" fill="url(#metalHighlight)"/>
-  <rect x="${frame + 8}" y="${frame + 10}" width="${innerWidth - 16}" height="8" rx="4" fill="url(#metalSheen)"/>
+  <g filter="url(#softShadow)">
+    <rect width="${cardWidth}" height="${cardHeight}" rx="${radius}" fill="url(#metalBorder)"/>
+    <rect x="${border}" y="${border}" width="${cardWidth - border * 2}" height="${cardHeight - border * 2}" rx="${innerRadius}" fill="#ffffff"/>
+  </g>
   <text x="${cardWidth / 2}" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#f3f4f6"/>
 `;
