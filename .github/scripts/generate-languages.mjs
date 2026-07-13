@@ -164,8 +164,31 @@ async function main() {
   const bottomPadding = 20;
   const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
 
+  const frame = 3;
+  const innerWidth = cardWidth - frame * 2;
+  const innerHeight = cardHeight - frame * 2;
+
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages">
-  <rect width="${cardWidth}" height="${cardHeight}" rx="14" fill="#ffffff" stroke="#e8ebef" stroke-width="1"/>
+  <defs>
+    <linearGradient id="metalEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f7f8fa"/>
+      <stop offset="18%" stop-color="#ffffff"/>
+      <stop offset="42%" stop-color="#b7bec8"/>
+      <stop offset="62%" stop-color="#e6eaef"/>
+      <stop offset="82%" stop-color="#8f98a5"/>
+      <stop offset="100%" stop-color="#6f7885"/>
+    </linearGradient>
+    <linearGradient id="metalHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.75"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#9aa3ad" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="${cardWidth}" height="${cardHeight}" rx="14" fill="url(#metalEdge)" filter="url(#cardShadow)"/>
+  <rect x="${frame}" y="${frame}" width="${innerWidth}" height="${innerHeight}" rx="11" fill="#ffffff"/>
+  <rect x="${frame + 1}" y="${frame + 1}" width="${innerWidth - 2}" height="28" rx="10" fill="url(#metalHighlight)"/>
   <text x="${cardWidth / 2}" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#f3f4f6"/>
 `;
