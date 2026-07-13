@@ -14,8 +14,6 @@ Building, learning, and shipping.
 
 ---
 
-### Languages
-
-<img src="./profile/languages.svg" alt="Most used languages" />
+<img src="./profile/languages.svg" alt="Languages used across public repositories" width="460" />
 
 </div>

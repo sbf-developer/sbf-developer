@@ -3,10 +3,7 @@ import path from "path";
 
 const username = "sbf-developer";
 const token = process.env.GITHUB_TOKEN;
-
-if (!token) {
-  throw new Error("GITHUB_TOKEN is required");
-}
+const MIN_PERCENT = 0.3;
 
 const headers = {
   Authorization: `Bearer ${token}`,
@@ -35,14 +32,16 @@ const colors = {
   R: "#198CE7",
   SCSS: "#c6538c",
   Vue: "#41b883",
-  Jupyter: "#DA5B0B",
+  "Jupyter Notebook": "#DA5B0B",
   Makefile: "#427819",
   Dockerfile: "#384d54",
   Lua: "#000080",
   Haskell: "#5e5086",
   Elixir: "#6e4a7e",
-  CSharp: "#178600",
   "C#": "#178600",
+  GDScript: "#355570",
+  NSIS: "#40AA53",
+  Other: "#484f58",
 };
 
 async function fetchJson(url) {
@@ -82,18 +81,61 @@ function colorFor(language) {
   return colors[language] || "#8b949e";
 }
 
+function formatPercent(bytes, total) {
+  return total > 0 ? Math.round((bytes / total) * 1000) / 10 : 0;
+}
+
+function buildDisplayLanguages(languages, totalBytes) {
+  const visible = [];
+  let otherBytes = 0;
+
+  for (const language of languages) {
+    const percent = formatPercent(language.bytes, totalBytes);
+    if (percent >= MIN_PERCENT) {
+      visible.push({ ...language, percent });
+    } else {
+      otherBytes += language.bytes;
+    }
+  }
+
+  if (otherBytes > 0) {
+    visible.push({
+      name: "Other",
+      bytes: otherBytes,
+      percent: formatPercent(otherBytes, totalBytes),
+    });
+  }
+
+  return visible;
+}
+
+function renderLanguageRow(x, y, width, language) {
+  const color = colorFor(language.name);
+  const label = escapeXml(language.name);
+  const percent = language.percent.toFixed(language.percent < 10 ? 1 : 0);
+
+  return `  <circle cx="${x + 5}" cy="${y - 4}" r="4" fill="${color}"/>
+  <text x="${x + 14}" y="${y}" fill="#c9d1d9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${label}</text>
+  <text x="${x + width - 4}" y="${y}" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${percent}%</text>
+`;
+}
+
 async function main() {
+  if (!token) {
+    throw new Error("GITHUB_TOKEN is required");
+  }
+
   const repos = await fetchAllRepos();
   const languageTotals = new Map();
 
   for (const repo of repos) {
     if (repo.fork) continue;
 
-    const languages = await fetchJson(
+    const repoLanguages = await fetchJson(
       `https://api.github.com/repos/${repo.full_name}/languages`,
     );
 
-    for (const [language, bytes] of Object.entries(languages)) {
+    for (const [language, bytes] of Object.entries(repoLanguages)) {
       languageTotals.set(
         language,
         (languageTotals.get(language) || 0) + Number(bytes),
@@ -105,37 +147,60 @@ async function main() {
     .sort((a, b) => b[1] - a[1])
     .map(([name, bytes]) => ({ name, bytes }));
 
-  const totalBytes = languages.reduce((sum, lang) => sum + lang.bytes, 0);
-  const cardWidth = 420;
-  const rowHeight = 18;
-  const headerHeight = 36;
-  const footerHeight = 16;
-  const cardHeight =
-    headerHeight + languages.length * rowHeight + footerHeight;
+  const totalBytes = languages.reduce((sum, language) => sum + language.bytes, 0);
+  const displayLanguages = buildDisplayLanguages(languages, totalBytes);
 
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}">
-  <rect width="${cardWidth}" height="${cardHeight}" rx="4.5" fill="#0d1117" stroke="#30363d"/>
-  <text x="20" y="24" fill="#58a6ff" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">All Languages</text>
+  const cardWidth = 460;
+  const padding = 24;
+  const barWidth = cardWidth - padding * 2;
+  const rowHeight = 24;
+  const columnGap = 28;
+  const columnWidth = (barWidth - columnGap) / 2;
+  const leftCount = Math.ceil(displayLanguages.length / 2);
+  const rightCount = displayLanguages.length - leftCount;
+  const gridRows = Math.max(leftCount, rightCount);
+  const headerHeight = 72;
+  const footerHeight = 28;
+  const cardHeight = headerHeight + gridRows * rowHeight + footerHeight;
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Language usage across public repositories">
+  <defs>
+    <linearGradient id="cardGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#161b22"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
+  <rect width="${cardWidth}" height="${cardHeight}" rx="12" fill="url(#cardGlow)" stroke="#30363d"/>
+  <text x="${padding}" y="34" fill="#e6edf3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Languages</text>
+  <text x="${padding}" y="52" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">${languages.length} across public repositories</text>
+  <rect x="${padding}" y="64" width="${barWidth}" height="10" rx="5" fill="#21262d"/>
 `;
 
-  languages.forEach((language, index) => {
-    const percent =
-      totalBytes > 0
-        ? Math.round((language.bytes / totalBytes) * 10000) / 100
-        : 0;
-    const barWidth = Math.max(2, Math.round(360 * (language.bytes / totalBytes)));
-    const y = headerHeight + index * rowHeight;
-    const color = colorFor(language.name);
-    const label = escapeXml(language.name);
+  let barX = padding;
+  for (const language of displayLanguages) {
+    const segmentWidth = Math.max(
+      language.name === "Other" ? 2 : 3,
+      Math.round((language.bytes / totalBytes) * barWidth),
+    );
+    svg += `  <rect x="${barX}" y="64" width="${segmentWidth}" height="10" rx="0" fill="${colorFor(language.name)}"/>\n`;
+    barX += segmentWidth;
+  }
 
-    svg += `  <text x="20" y="${y}" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${label}</text>
-  <text x="${cardWidth - 20}" y="${y}" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${percent}%</text>
-  <rect x="20" y="${y + 4}" width="360" height="8" rx="4" fill="#161b22"/>
-  <rect x="20" y="${y + 4}" width="${barWidth}" height="8" rx="4" fill="${color}"/>
-`;
+  svg += `  <rect x="${padding}" y="64" width="${barWidth}" height="10" rx="5" fill="none" stroke="#30363d" stroke-width="1"/>\n`;
+
+  const gridTop = headerHeight;
+  const leftX = padding;
+  const rightX = padding + columnWidth + columnGap;
+
+  displayLanguages.forEach((language, index) => {
+    const column = index < leftCount ? "left" : "right";
+    const row = column === "left" ? index : index - leftCount;
+    const x = column === "left" ? leftX : rightX;
+    const y = gridTop + row * rowHeight + 16;
+    svg += renderLanguageRow(x, y, columnWidth, language);
   });
 
-  svg += `  <text x="20" y="${cardHeight - 6}" fill="#6e7681" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10">${languages.length} languages across public repositories</text>
+  svg += `  <text x="${padding}" y="${cardHeight - 10}" fill="#6e7681" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10">Updated from GitHub language stats</text>
 </svg>
 `;
 
@@ -143,7 +208,9 @@ async function main() {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
   fs.writeFileSync(outputPath, svg, "utf8");
 
-  console.log(`Generated ${languages.length} languages (${totalBytes} total bytes)`);
+  console.log(
+    `Generated ${displayLanguages.length} display languages (${languages.length} total, ${totalBytes} bytes)`,
+  );
 }
 
 main().catch((error) => {
