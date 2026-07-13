@@ -164,7 +164,7 @@ async function main() {
   const bottomPadding = 20;
   const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
 
-  const frame = 6;
+  const frame = 4;
   const outerInset = 1;
   const innerWidth = cardWidth - frame * 2;
   const innerHeight = cardHeight - frame * 2;
