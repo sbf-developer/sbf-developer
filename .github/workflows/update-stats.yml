@@ -23,18 +23,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Generate language statistics
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: top-langs
-          options: username=sbf-developer&layout=compact&langs_count=8&hide_border=true&theme=transparent
-          path: profile/languages.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Generate all language statistics
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node .github/scripts/generate-languages.mjs
 
       - name: Commit statistics
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add profile/*.svg
+          git add profile/languages.svg
           git commit -m "Update profile statistics" || exit 0
           git push
