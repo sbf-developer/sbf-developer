@@ -1,6 +1,4 @@
-<a href="https://sbf-developer.github.io/">Contact</a>
-
-Building, learning, and shipping.
+Building, learning, and shipping <a href="https://sbf-developer.github.io/">Contact</a>
 
 ---
 
