@@ -114,9 +114,9 @@ function renderLanguageRow(x, y, width, language) {
   const label = escapeXml(language.name);
   const percent = language.percent.toFixed(language.percent < 10 ? 1 : 0);
 
-  return `  <circle cx="${x + 5}" cy="${y - 4}" r="4" fill="${color}"/>
-  <text x="${x + 14}" y="${y}" fill="#c9d1d9" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${label}</text>
-  <text x="${x + width - 4}" y="${y}" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${percent}%</text>
+  return `  <circle cx="${x + 5}" cy="${y - 4}" r="3.5" fill="${color}"/>
+  <text x="${x + 14}" y="${y}" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${label}</text>
+  <text x="${x + width - 4}" y="${y}" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${percent}%</text>
 `;
 }
 
@@ -165,15 +165,9 @@ async function main() {
   const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages">
-  <defs>
-    <linearGradient id="cardGlow" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#161b22"/>
-      <stop offset="100%" stop-color="#0d1117"/>
-    </linearGradient>
-  </defs>
-  <rect width="${cardWidth}" height="${cardHeight}" rx="12" fill="url(#cardGlow)" stroke="#30363d"/>
-  <text x="${cardWidth / 2}" y="34" fill="#e6edf3" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Languages</text>
-  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#21262d"/>
+  <rect width="${cardWidth}" height="${cardHeight}" rx="14" fill="#ffffff" stroke="#e8ebef" stroke-width="1"/>
+  <text x="${cardWidth / 2}" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
+  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#f3f4f6"/>
 `;
 
   let barX = padding;
@@ -186,7 +180,7 @@ async function main() {
     barX += segmentWidth;
   }
 
-  svg += `  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="none" stroke="#30363d" stroke-width="1"/>\n`;
+  svg += `  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="none" stroke="#e8ebef" stroke-width="1"/>\n`;
 
   const leftX = padding;
   const rightX = padding + columnWidth + columnGap;
