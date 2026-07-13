@@ -1,7 +1,3 @@
-<div align="center">
-
-# Scott Brodie Forsyth
-
 <a href="https://sbf-developer.github.io/">Contact</a>
 
 Building, learning, and shipping.
