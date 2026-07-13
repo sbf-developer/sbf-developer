@@ -156,17 +156,15 @@ async function main() {
   const rowHeight = 24;
   const columnGap = 28;
   const columnWidth = (barWidth - columnGap) / 2;
-  const leftCount = Math.ceil(displayLanguages.length / 2);
-  const rightCount = displayLanguages.length - leftCount;
-  const gridRows = Math.max(leftCount, rightCount);
+  const gridRows = Math.ceil(displayLanguages.length / 2);
   const barY = 48;
   const barHeight = 10;
   const gridGap = 22;
   const gridTop = barY + barHeight + gridGap;
-  const footerHeight = 28;
-  const cardHeight = gridTop + gridRows * rowHeight + footerHeight;
+  const bottomPadding = 20;
+  const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
 
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Language usage across public repositories">
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages">
   <defs>
     <linearGradient id="cardGlow" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#161b22"/>
@@ -174,7 +172,7 @@ async function main() {
     </linearGradient>
   </defs>
   <rect width="${cardWidth}" height="${cardHeight}" rx="12" fill="url(#cardGlow)" stroke="#30363d"/>
-  <text x="${padding}" y="34" fill="#e6edf3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Languages</text>
+  <text x="${cardWidth / 2}" y="34" fill="#e6edf3" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Languages</text>
   <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#21262d"/>
 `;
 
@@ -194,15 +192,14 @@ async function main() {
   const rightX = padding + columnWidth + columnGap;
 
   displayLanguages.forEach((language, index) => {
-    const column = index < leftCount ? "left" : "right";
-    const row = column === "left" ? index : index - leftCount;
-    const x = column === "left" ? leftX : rightX;
+    const row = Math.floor(index / 2);
+    const column = index % 2;
+    const x = column === 0 ? leftX : rightX;
     const y = gridTop + row * rowHeight + 16;
     svg += renderLanguageRow(x, y, columnWidth, language);
   });
 
-  svg += `  <text x="${padding}" y="${cardHeight - 10}" fill="#6e7681" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="10">Updated from GitHub language stats</text>
-</svg>
+  svg += `</svg>
 `;
 
   const outputPath = path.join(process.cwd(), "profile", "languages.svg");
