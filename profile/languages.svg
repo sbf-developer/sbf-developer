@@ -1,37 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="460" height="220" viewBox="0 0 460 220" role="img" aria-label="Languages">
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="220" viewBox="0 0 460 220" role="img" aria-label="Languages" shape-rendering="geometricPrecision">
   <defs>
-    <linearGradient id="metalEdge" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="12%" stop-color="#eef1f5"/>
-      <stop offset="30%" stop-color="#9aa4b2"/>
-      <stop offset="48%" stop-color="#d8dde4"/>
-      <stop offset="66%" stop-color="#707b8a"/>
-      <stop offset="84%" stop-color="#c3cad3"/>
-      <stop offset="100%" stop-color="#4f5864"/>
+    <linearGradient id="metalBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="28%" stop-color="#b6bec8"/>
+      <stop offset="52%" stop-color="#eef1f4"/>
+      <stop offset="78%" stop-color="#8b96a3"/>
+      <stop offset="100%" stop-color="#6d7784"/>
     </linearGradient>
-    <linearGradient id="metalRim" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#6b7480"/>
-      <stop offset="100%" stop-color="#3f4650"/>
-    </linearGradient>
-    <linearGradient id="metalHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-      <stop offset="55%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <linearGradient id="metalSheen" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="55%" stop-color="#ffffff" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
-    </linearGradient>
-    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#667080" flood-opacity="0.32"/>
+    <filter id="softShadow" x="-6%" y="-6%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#94a3b8" flood-opacity="0.2"/>
     </filter>
   </defs>
-  <rect x="1" y="1" width="458" height="218" rx="15" fill="url(#metalRim)" filter="url(#cardShadow)"/>
-  <rect x="2" y="2" width="456" height="216" rx="14" fill="url(#metalEdge)"/>
-  <rect x="4" y="4" width="452" height="212" rx="10" fill="#ffffff" stroke="#b8c0ca" stroke-width="1"/>
-  <rect x="5" y="5" width="450" height="34" rx="9" fill="url(#metalHighlight)"/>
-  <rect x="12" y="14" width="436" height="8" rx="4" fill="url(#metalSheen)"/>
+  <g filter="url(#softShadow)">
+    <rect width="460" height="220" rx="14" fill="url(#metalBorder)"/>
+    <rect x="3" y="3" width="454" height="214" rx="11" fill="#ffffff"/>
+  </g>
   <text x="230" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="#f3f4f6"/>
   <rect x="24" y="48" width="188" height="10" rx="0" fill="#3572A5"/>
