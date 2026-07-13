@@ -159,9 +159,12 @@ async function main() {
   const leftCount = Math.ceil(displayLanguages.length / 2);
   const rightCount = displayLanguages.length - leftCount;
   const gridRows = Math.max(leftCount, rightCount);
-  const headerHeight = 72;
+  const barY = 48;
+  const barHeight = 10;
+  const gridGap = 22;
+  const gridTop = barY + barHeight + gridGap;
   const footerHeight = 28;
-  const cardHeight = headerHeight + gridRows * rowHeight + footerHeight;
+  const cardHeight = gridTop + gridRows * rowHeight + footerHeight;
 
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Language usage across public repositories">
   <defs>
@@ -172,8 +175,7 @@ async function main() {
   </defs>
   <rect width="${cardWidth}" height="${cardHeight}" rx="12" fill="url(#cardGlow)" stroke="#30363d"/>
   <text x="${padding}" y="34" fill="#e6edf3" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="16" font-weight="600">Languages</text>
-  <text x="${padding}" y="52" fill="#8b949e" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">${languages.length} across public repositories</text>
-  <rect x="${padding}" y="64" width="${barWidth}" height="10" rx="5" fill="#21262d"/>
+  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#21262d"/>
 `;
 
   let barX = padding;
@@ -182,13 +184,12 @@ async function main() {
       language.name === "Other" ? 2 : 3,
       Math.round((language.bytes / totalBytes) * barWidth),
     );
-    svg += `  <rect x="${barX}" y="64" width="${segmentWidth}" height="10" rx="0" fill="${colorFor(language.name)}"/>\n`;
+    svg += `  <rect x="${barX}" y="${barY}" width="${segmentWidth}" height="${barHeight}" rx="0" fill="${colorFor(language.name)}"/>\n`;
     barX += segmentWidth;
   }
 
-  svg += `  <rect x="${padding}" y="64" width="${barWidth}" height="10" rx="5" fill="none" stroke="#30363d" stroke-width="1"/>\n`;
+  svg += `  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="none" stroke="#30363d" stroke-width="1"/>\n`;
 
-  const gridTop = headerHeight;
   const leftX = padding;
   const rightX = padding + columnWidth + columnGap;
 
