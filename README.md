@@ -1,6 +1,8 @@
 <div align="center">
 
-Building, learning, and shipping - <a href="https://sbf-developer.github.io/">contact</a>
+Building, learning, and shipping
+
+<a href="https://sbf-developer.github.io/">Contact</a>
 
 ---
 
