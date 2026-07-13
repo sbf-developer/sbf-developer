@@ -29,9 +29,9 @@
   </defs>
   <rect x="1" y="1" width="458" height="218" rx="15" fill="url(#metalRim)" filter="url(#cardShadow)"/>
   <rect x="2" y="2" width="456" height="216" rx="14" fill="url(#metalEdge)"/>
-  <rect x="6" y="6" width="448" height="208" rx="10" fill="#ffffff" stroke="#b8c0ca" stroke-width="1"/>
-  <rect x="7" y="7" width="446" height="34" rx="9" fill="url(#metalHighlight)"/>
-  <rect x="14" y="16" width="432" height="8" rx="4" fill="url(#metalSheen)"/>
+  <rect x="4" y="4" width="452" height="212" rx="10" fill="#ffffff" stroke="#b8c0ca" stroke-width="1"/>
+  <rect x="5" y="5" width="450" height="34" rx="9" fill="url(#metalHighlight)"/>
+  <rect x="12" y="14" width="436" height="8" rx="4" fill="url(#metalSheen)"/>
   <text x="230" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="#f3f4f6"/>
   <rect x="24" y="48" width="188" height="10" rx="0" fill="#3572A5"/>
