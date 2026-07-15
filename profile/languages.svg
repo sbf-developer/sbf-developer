@@ -17,9 +17,9 @@
   </g>
   <text x="230" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="#f3f4f6"/>
-  <rect x="24" y="48" width="188" height="10" rx="0" fill="#3572A5"/>
-  <rect x="212" y="48" width="89" height="10" rx="0" fill="#3178c6"/>
-  <rect x="301" y="48" width="76" height="10" rx="0" fill="#f1e05a"/>
+  <rect x="24" y="48" width="189" height="10" rx="0" fill="#3572A5"/>
+  <rect x="213" y="48" width="89" height="10" rx="0" fill="#3178c6"/>
+  <rect x="302" y="48" width="75" height="10" rx="0" fill="#f1e05a"/>
   <rect x="377" y="48" width="22" height="10" rx="0" fill="#563d7c"/>
   <rect x="399" y="48" width="16" height="10" rx="0" fill="#e34c26"/>
   <rect x="415" y="48" width="13" height="10" rx="0" fill="#3D6117"/>
