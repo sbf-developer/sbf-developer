@@ -17,45 +17,41 @@
   </g>
   <text x="230" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="#f3f4f6"/>
-  <rect x="24" y="48" width="186" height="10" rx="0" fill="#3572A5"/>
-  <rect x="210" y="48" width="87" height="10" rx="0" fill="#3178c6"/>
-  <rect x="297" y="48" width="74" height="10" rx="0" fill="#f1e05a"/>
-  <rect x="371" y="48" width="22" height="10" rx="0" fill="#563d7c"/>
-  <rect x="393" y="48" width="20" height="10" rx="0" fill="#3D6117"/>
-  <rect x="413" y="48" width="16" height="10" rx="0" fill="#e34c26"/>
-  <rect x="429" y="48" width="3" height="10" rx="0" fill="#A97BFF"/>
-  <rect x="432" y="48" width="3" height="10" rx="0" fill="#dea584"/>
-  <rect x="435" y="48" width="3" height="10" rx="0" fill="#355570"/>
-  <rect x="438" y="48" width="2" height="10" rx="0" fill="#484f58"/>
+  <rect x="24" y="48" width="175" height="10" rx="0" fill="#3572A5"/>
+  <rect x="199" y="48" width="82" height="10" rx="0" fill="#3178c6"/>
+  <rect x="281" y="48" width="69" height="10" rx="0" fill="#f1e05a"/>
+  <rect x="350" y="48" width="43" height="10" rx="0" fill="#3D6117"/>
+  <rect x="393" y="48" width="20" height="10" rx="0" fill="#563d7c"/>
+  <rect x="413" y="48" width="15" height="10" rx="0" fill="#e34c26"/>
+  <rect x="428" y="48" width="3" height="10" rx="0" fill="#A97BFF"/>
+  <rect x="431" y="48" width="3" height="10" rx="0" fill="#dea584"/>
+  <rect x="434" y="48" width="3" height="10" rx="0" fill="#484f58"/>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="none" stroke="#e8ebef" stroke-width="1"/>
   <circle cx="29" cy="92" r="3.5" fill="#3572A5"/>
   <text x="38" y="96" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Python</text>
-  <text x="212" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">45%</text>
+  <text x="212" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">42%</text>
   <circle cx="249" cy="92" r="3.5" fill="#3178c6"/>
   <text x="258" y="96" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">TypeScript</text>
-  <text x="432" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">21%</text>
+  <text x="432" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">20%</text>
   <circle cx="29" cy="116" r="3.5" fill="#f1e05a"/>
   <text x="38" y="120" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">JavaScript</text>
-  <text x="212" y="120" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">18%</text>
-  <circle cx="249" cy="116" r="3.5" fill="#563d7c"/>
-  <text x="258" y="120" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">CSS</text>
-  <text x="432" y="120" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">5.3%</text>
-  <circle cx="29" cy="140" r="3.5" fill="#3D6117"/>
-  <text x="38" y="144" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">TeX</text>
-  <text x="212" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">4.8%</text>
+  <text x="212" y="120" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">17%</text>
+  <circle cx="249" cy="116" r="3.5" fill="#3D6117"/>
+  <text x="258" y="120" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">TeX</text>
+  <text x="432" y="120" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">10%</text>
+  <circle cx="29" cy="140" r="3.5" fill="#563d7c"/>
+  <text x="38" y="144" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">CSS</text>
+  <text x="212" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">4.9%</text>
   <circle cx="249" cy="140" r="3.5" fill="#e34c26"/>
   <text x="258" y="144" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">HTML</text>
-  <text x="432" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">3.8%</text>
+  <text x="432" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">3.6%</text>
   <circle cx="29" cy="164" r="3.5" fill="#A97BFF"/>
   <text x="38" y="168" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Kotlin</text>
   <text x="212" y="168" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.7%</text>
   <circle cx="249" cy="164" r="3.5" fill="#dea584"/>
   <text x="258" y="168" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Rust</text>
-  <text x="432" y="168" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.5%</text>
-  <circle cx="29" cy="188" r="3.5" fill="#355570"/>
-  <text x="38" y="192" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">GDScript</text>
-  <text x="212" y="192" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.3%</text>
-  <circle cx="249" cy="188" r="3.5" fill="#484f58"/>
-  <text x="258" y="192" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Other</text>
-  <text x="432" y="192" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.5%</text>
+  <text x="432" y="168" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.4%</text>
+  <circle cx="29" cy="188" r="3.5" fill="#484f58"/>
+  <text x="38" y="192" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Other</text>
+  <text x="212" y="192" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.7%</text>
 </svg>
