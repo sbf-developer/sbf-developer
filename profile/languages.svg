@@ -18,19 +18,19 @@
   <text x="230" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="#f3f4f6"/>
   <rect x="24" y="48" width="142" height="10" rx="0" fill="#3D6117"/>
-  <rect x="166" y="48" width="123" height="10" rx="0" fill="#3572A5"/>
-  <rect x="289" y="48" width="63" height="10" rx="0" fill="#3178c6"/>
-  <rect x="352" y="48" width="49" height="10" rx="0" fill="#f1e05a"/>
-  <rect x="401" y="48" width="15" height="10" rx="0" fill="#563d7c"/>
-  <rect x="416" y="48" width="11" height="10" rx="0" fill="#e34c26"/>
-  <rect x="427" y="48" width="3" height="10" rx="0" fill="#f34b7d"/>
-  <rect x="430" y="48" width="3" height="10" rx="0" fill="#A97BFF"/>
-  <rect x="433" y="48" width="3" height="10" rx="0" fill="#dea584"/>
-  <rect x="436" y="48" width="3" height="10" rx="0" fill="#484f58"/>
+  <rect x="166" y="48" width="124" height="10" rx="0" fill="#3572A5"/>
+  <rect x="290" y="48" width="63" height="10" rx="0" fill="#3178c6"/>
+  <rect x="353" y="48" width="49" height="10" rx="0" fill="#f1e05a"/>
+  <rect x="402" y="48" width="15" height="10" rx="0" fill="#563d7c"/>
+  <rect x="417" y="48" width="11" height="10" rx="0" fill="#e34c26"/>
+  <rect x="428" y="48" width="3" height="10" rx="0" fill="#f34b7d"/>
+  <rect x="431" y="48" width="3" height="10" rx="0" fill="#A97BFF"/>
+  <rect x="434" y="48" width="3" height="10" rx="0" fill="#dea584"/>
+  <rect x="437" y="48" width="3" height="10" rx="0" fill="#484f58"/>
   <rect x="24" y="48" width="412" height="10" rx="5" fill="none" stroke="#e8ebef" stroke-width="1"/>
   <circle cx="29" cy="92" r="3.5" fill="#3D6117"/>
   <text x="38" y="96" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">TeX</text>
-  <text x="212" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">35%</text>
+  <text x="212" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">34%</text>
   <circle cx="249" cy="92" r="3.5" fill="#3572A5"/>
   <text x="258" y="96" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">Python</text>
   <text x="432" y="96" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">30%</text>
