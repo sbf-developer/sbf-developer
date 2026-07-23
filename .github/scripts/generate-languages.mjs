@@ -109,18 +109,146 @@ function buildDisplayLanguages(languages, totalBytes) {
   return visible;
 }
 
+function computeBarSegmentWidths(languages, totalBytes, barWidth) {
+  const rawWidths = languages.map(
+    (language) => (language.bytes / totalBytes) * barWidth,
+  );
+  const widths = rawWidths.map((width) => Math.floor(width));
+  let remainder = barWidth - widths.reduce((sum, width) => sum + width, 0);
+
+  const ranked = rawWidths
+    .map((width, index) => ({ index, fraction: width - widths[index] }))
+    .sort((a, b) => b.fraction - a.fraction);
+
+  for (let i = 0; i < remainder; i += 1) {
+    widths[ranked[i % ranked.length].index] += 1;
+  }
+
+  return widths;
+}
+
 function renderLanguageRow(x, y, width, language) {
   const color = colorFor(language.name);
   const label = escapeXml(language.name);
   const percent = language.percent.toFixed(language.percent < 10 ? 1 : 0);
+  const swatchSize = 6;
+  const swatchY = y - swatchSize + 2;
 
-  return `  <circle cx="${x + 5}" cy="${y - 4}" r="3.5" fill="${color}"/>
-  <text x="${x + 14}" y="${y}" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${label}</text>
-  <text x="${x + width - 4}" y="${y}" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">${percent}%</text>
+  return `  <rect x="${x}" y="${swatchY}" width="${swatchSize}" height="${swatchSize}" rx="1.5" fill="${color}"/>
+  <text x="${x + swatchSize + 8}" y="${y}" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">${label}</text>
+  <text x="${x + width}" y="${y}" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">${percent}%</text>
 `;
 }
 
+function renderSvg(displayLanguages, totalBytes) {
+  const cardWidth = 460;
+  const padding = 24;
+  const barWidth = cardWidth - padding * 2;
+  const rowHeight = 22;
+  const columnGap = 28;
+  const columnWidth = (barWidth - columnGap) / 2;
+  const gridRows = Math.ceil(displayLanguages.length / 2);
+  const barY = 46;
+  const barHeight = 8;
+  const barRadius = 4;
+  const gridGap = 18;
+  const gridTop = barY + barHeight + gridGap;
+  const bottomPadding = 20;
+  const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
+
+  const radius = 14;
+  const border = 3;
+  const innerRadius = radius - border;
+  const segmentWidths = computeBarSegmentWidths(
+    displayLanguages,
+    totalBytes,
+    barWidth,
+  );
+
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages" shape-rendering="geometricPrecision">
+  <defs>
+    <linearGradient id="metalBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="28%" stop-color="#b6bec8"/>
+      <stop offset="52%" stop-color="#eef1f4"/>
+      <stop offset="78%" stop-color="#8b96a3"/>
+      <stop offset="100%" stop-color="#6d7784"/>
+    </linearGradient>
+    <filter id="softShadow" x="-6%" y="-6%" width="112%" height="112%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#94a3b8" flood-opacity="0.2"/>
+    </filter>
+    <clipPath id="barClip">
+      <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="${barRadius}"/>
+    </clipPath>
+  </defs>
+  <g filter="url(#softShadow)">
+    <rect width="${cardWidth}" height="${cardHeight}" rx="${radius}" fill="url(#metalBorder)"/>
+    <rect x="${border}" y="${border}" width="${cardWidth - border * 2}" height="${cardHeight - border * 2}" rx="${innerRadius}" fill="#ffffff"/>
+  </g>
+  <text x="${cardWidth / 2}" y="32" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600">Languages</text>
+  <g clip-path="url(#barClip)">
+    <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" fill="#eef1f4"/>
+`;
+
+  let barX = padding;
+  displayLanguages.forEach((language, index) => {
+    const segmentWidth = segmentWidths[index];
+    if (segmentWidth <= 0) return;
+    svg += `    <rect x="${barX}" y="${barY}" width="${segmentWidth}" height="${barHeight}" fill="${colorFor(language.name)}"/>\n`;
+    barX += segmentWidth;
+  });
+
+  svg += `  </g>
+  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="${barRadius}" fill="none" stroke="#d0d7de" stroke-width="1"/>
+`;
+
+  const leftX = padding;
+  const rightX = padding + columnWidth + columnGap;
+
+  displayLanguages.forEach((language, index) => {
+    const row = Math.floor(index / 2);
+    const column = index % 2;
+    const x = column === 0 ? leftX : rightX;
+    const y = gridTop + row * rowHeight + 14;
+    svg += renderLanguageRow(x, y, columnWidth, language);
+  });
+
+  svg += `</svg>
+`;
+
+  return svg;
+}
+
+const previewLanguages = [
+  { name: "TeX", bytes: 340, percent: 34 },
+  { name: "Python", bytes: 300, percent: 30 },
+  { name: "TypeScript", bytes: 150, percent: 15 },
+  { name: "JavaScript", bytes: 120, percent: 12 },
+  { name: "CSS", bytes: 37, percent: 3.7 },
+  { name: "HTML", bytes: 26, percent: 2.6 },
+  { name: "C++", bytes: 8, percent: 0.8 },
+  { name: "Kotlin", bytes: 5, percent: 0.5 },
+  { name: "Rust", bytes: 3, percent: 0.3 },
+  { name: "Other", bytes: 6, percent: 0.6 },
+];
+
 async function main() {
+  if (process.argv.includes("--preview")) {
+    const totalBytes = previewLanguages.reduce(
+      (sum, language) => sum + language.bytes,
+      0,
+    );
+    const outputPath = path.join(process.cwd(), "profile", "languages.svg");
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+    fs.writeFileSync(
+      outputPath,
+      renderSvg(previewLanguages, totalBytes),
+      "utf8",
+    );
+    console.log(`Preview written to ${outputPath}`);
+    return;
+  }
+
   if (!token) {
     throw new Error("GITHUB_TOKEN is required");
   }
@@ -149,71 +277,7 @@ async function main() {
 
   const totalBytes = languages.reduce((sum, language) => sum + language.bytes, 0);
   const displayLanguages = buildDisplayLanguages(languages, totalBytes);
-
-  const cardWidth = 460;
-  const padding = 24;
-  const barWidth = cardWidth - padding * 2;
-  const rowHeight = 24;
-  const columnGap = 28;
-  const columnWidth = (barWidth - columnGap) / 2;
-  const gridRows = Math.ceil(displayLanguages.length / 2);
-  const barY = 48;
-  const barHeight = 10;
-  const gridGap = 22;
-  const gridTop = barY + barHeight + gridGap;
-  const bottomPadding = 20;
-  const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
-
-  const radius = 14;
-  const border = 3;
-  const innerRadius = radius - border;
-
-  let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${cardWidth}" height="${cardHeight}" viewBox="0 0 ${cardWidth} ${cardHeight}" role="img" aria-label="Languages" shape-rendering="geometricPrecision">
-  <defs>
-    <linearGradient id="metalBorder" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#f8fafc"/>
-      <stop offset="28%" stop-color="#b6bec8"/>
-      <stop offset="52%" stop-color="#eef1f4"/>
-      <stop offset="78%" stop-color="#8b96a3"/>
-      <stop offset="100%" stop-color="#6d7784"/>
-    </linearGradient>
-    <filter id="softShadow" x="-6%" y="-6%" width="112%" height="112%">
-      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#94a3b8" flood-opacity="0.2"/>
-    </filter>
-  </defs>
-  <g filter="url(#softShadow)">
-    <rect width="${cardWidth}" height="${cardHeight}" rx="${radius}" fill="url(#metalBorder)"/>
-    <rect x="${border}" y="${border}" width="${cardWidth - border * 2}" height="${cardHeight - border * 2}" rx="${innerRadius}" fill="#ffffff"/>
-  </g>
-  <text x="${cardWidth / 2}" y="34" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="14" font-weight="600">Languages</text>
-  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="#f3f4f6"/>
-`;
-
-  let barX = padding;
-  for (const language of displayLanguages) {
-    const segmentWidth = Math.max(
-      language.name === "Other" ? 2 : 3,
-      Math.round((language.bytes / totalBytes) * barWidth),
-    );
-    svg += `  <rect x="${barX}" y="${barY}" width="${segmentWidth}" height="${barHeight}" rx="0" fill="${colorFor(language.name)}"/>\n`;
-    barX += segmentWidth;
-  }
-
-  svg += `  <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" rx="5" fill="none" stroke="#e8ebef" stroke-width="1"/>\n`;
-
-  const leftX = padding;
-  const rightX = padding + columnWidth + columnGap;
-
-  displayLanguages.forEach((language, index) => {
-    const row = Math.floor(index / 2);
-    const column = index % 2;
-    const x = column === 0 ? leftX : rightX;
-    const y = gridTop + row * rowHeight + 16;
-    svg += renderLanguageRow(x, y, columnWidth, language);
-  });
-
-  svg += `</svg>
-`;
+  const svg = renderSvg(displayLanguages, totalBytes);
 
   const outputPath = path.join(process.cwd(), "profile", "languages.svg");
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
