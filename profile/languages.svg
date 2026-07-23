@@ -45,7 +45,7 @@
   <text x="212" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">3.7%</text>
   <circle cx="249" cy="140" r="3.5" fill="#e34c26"/>
   <text x="258" y="144" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">HTML</text>
-  <text x="432" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">2.7%</text>
+  <text x="432" y="144" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">2.6%</text>
   <circle cx="29" cy="164" r="3.5" fill="#f34b7d"/>
   <text x="38" y="168" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">C++</text>
   <text x="212" y="168" fill="#656d76" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="12">0.8%</text>
