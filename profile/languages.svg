@@ -24,10 +24,10 @@
     <rect x="24" y="44" width="139" height="9" fill="#3D6117"/>
     <rect x="163" y="44" width="123" height="9" fill="#3572A5"/>
     <rect x="286" y="44" width="61" height="9" fill="#3178c6"/>
-    <rect x="347" y="44" width="49" height="9" fill="#f1e05a"/>
-    <rect x="396" y="44" width="17" height="9" fill="#e34c26"/>
-    <rect x="413" y="44" width="15" height="9" fill="#563d7c"/>
-    <rect x="428" y="44" width="8" height="9" fill="#484f58"/>
+    <rect x="347" y="44" width="48" height="9" fill="#f1e05a"/>
+    <rect x="395" y="44" width="17" height="9" fill="#e34c26"/>
+    <rect x="412" y="44" width="15" height="9" fill="#563d7c"/>
+    <rect x="427" y="44" width="9" height="9" fill="#484f58"/>
   </g>
   <rect x="24" y="44" width="412" height="9" rx="4.5" fill="none" stroke="#d0d7de" stroke-width="1"/>
   <rect x="24" y="73" width="6" height="6" rx="1.5" fill="#3D6117"/>
