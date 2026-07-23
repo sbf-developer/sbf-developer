@@ -124,19 +124,42 @@ function computeBarSegmentWidths(languages, totalBytes, barWidth) {
     widths[ranked[i % ranked.length].index] += 1;
   }
 
-  return widths;
+  return mergeTinyBarSegments(languages, widths, 4);
 }
 
-function renderLanguageRow(x, y, width, language) {
+function mergeTinyBarSegments(languages, widths, minPixels) {
+  const merged = [...widths];
+  const otherIndex = languages.findIndex((language) => language.name === "Other");
+  const absorbIndex = otherIndex >= 0 ? otherIndex : merged.length - 1;
+
+  for (let index = 0; index < merged.length; index += 1) {
+    if (index === absorbIndex || merged[index] <= 0 || merged[index] >= minPixels) {
+      continue;
+    }
+
+    merged[absorbIndex] += merged[index];
+    merged[index] = 0;
+  }
+
+  return merged;
+}
+
+function formatPercentLabel(percent) {
+  return percent < 10 ? percent.toFixed(1) : String(Math.round(percent));
+}
+
+function renderLanguageRow(x, y, language) {
   const color = colorFor(language.name);
   const label = escapeXml(language.name);
-  const percent = language.percent.toFixed(language.percent < 10 ? 1 : 0);
+  const percent = formatPercentLabel(language.percent);
   const swatchSize = 6;
-  const swatchY = y - swatchSize + 2;
+  const textSize = 11;
+  const swatchY = y - textSize + 2;
 
   return `  <rect x="${x}" y="${swatchY}" width="${swatchSize}" height="${swatchSize}" rx="1.5" fill="${color}"/>
-  <text x="${x + swatchSize + 8}" y="${y}" fill="#24292f" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">${label}</text>
-  <text x="${x + width}" y="${y}" fill="#8b949e" text-anchor="end" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="11">${percent}%</text>
+  <text x="${x + swatchSize + 7}" y="${y}" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="${textSize}">
+    <tspan fill="#24292f">${label}</tspan><tspan fill="#8b949e"> ${percent}%</tspan>
+  </text>
 `;
 }
 
@@ -144,14 +167,14 @@ function renderSvg(displayLanguages, totalBytes) {
   const cardWidth = 460;
   const padding = 24;
   const barWidth = cardWidth - padding * 2;
-  const rowHeight = 22;
-  const columnGap = 28;
+  const rowHeight = 20;
+  const columnGap = 40;
   const columnWidth = (barWidth - columnGap) / 2;
   const gridRows = Math.ceil(displayLanguages.length / 2);
-  const barY = 46;
-  const barHeight = 8;
-  const barRadius = 4;
-  const gridGap = 18;
+  const barY = 44;
+  const barHeight = 9;
+  const barRadius = 4.5;
+  const gridGap = 16;
   const gridTop = barY + barHeight + gridGap;
   const bottomPadding = 20;
   const cardHeight = gridTop + gridRows * rowHeight + bottomPadding;
@@ -185,7 +208,7 @@ function renderSvg(displayLanguages, totalBytes) {
     <rect width="${cardWidth}" height="${cardHeight}" rx="${radius}" fill="url(#metalBorder)"/>
     <rect x="${border}" y="${border}" width="${cardWidth - border * 2}" height="${cardHeight - border * 2}" rx="${innerRadius}" fill="#ffffff"/>
   </g>
-  <text x="${cardWidth / 2}" y="32" fill="#24292f" text-anchor="middle" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600">Languages</text>
+  <text x="${cardWidth / 2}" y="30" fill="#24292f" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="13" font-weight="600">Languages</text>
   <g clip-path="url(#barClip)">
     <rect x="${padding}" y="${barY}" width="${barWidth}" height="${barHeight}" fill="#eef1f4"/>
 `;
@@ -209,8 +232,8 @@ function renderSvg(displayLanguages, totalBytes) {
     const row = Math.floor(index / 2);
     const column = index % 2;
     const x = column === 0 ? leftX : rightX;
-    const y = gridTop + row * rowHeight + 14;
-    svg += renderLanguageRow(x, y, columnWidth, language);
+    const y = gridTop + row * rowHeight + 13;
+    svg += renderLanguageRow(x, y, language);
   });
 
   svg += `</svg>
@@ -224,8 +247,8 @@ const previewLanguages = [
   { name: "Python", bytes: 300, percent: 30 },
   { name: "TypeScript", bytes: 150, percent: 15 },
   { name: "JavaScript", bytes: 120, percent: 12 },
-  { name: "CSS", bytes: 37, percent: 3.7 },
-  { name: "HTML", bytes: 26, percent: 2.6 },
+  { name: "HTML", bytes: 41, percent: 4.1 },
+  { name: "CSS", bytes: 36, percent: 3.6 },
   { name: "C++", bytes: 8, percent: 0.8 },
   { name: "Kotlin", bytes: 5, percent: 0.5 },
   { name: "Rust", bytes: 3, percent: 0.3 },
