@@ -22,12 +22,12 @@
   <g clip-path="url(#barClip)">
     <rect x="24" y="44" width="412" height="9" fill="#eef1f4"/>
     <rect x="24" y="44" width="109" height="9" fill="#3572A5"/>
-    <rect x="133" y="44" width="94" height="9" fill="#f34b7d"/>
-    <rect x="227" y="44" width="67" height="9" fill="#3D6117"/>
-    <rect x="294" y="44" width="44" height="9" fill="#3178c6"/>
-    <rect x="338" y="44" width="35" height="9" fill="#f1e05a"/>
-    <rect x="373" y="44" width="21" height="9" fill="#555555"/>
-    <rect x="394" y="44" width="14" height="9" fill="#e34c26"/>
+    <rect x="133" y="44" width="93" height="9" fill="#f34b7d"/>
+    <rect x="226" y="44" width="68" height="9" fill="#3D6117"/>
+    <rect x="294" y="44" width="45" height="9" fill="#3178c6"/>
+    <rect x="339" y="44" width="35" height="9" fill="#f1e05a"/>
+    <rect x="374" y="44" width="21" height="9" fill="#555555"/>
+    <rect x="395" y="44" width="13" height="9" fill="#e34c26"/>
     <rect x="408" y="44" width="11" height="9" fill="#563d7c"/>
     <rect x="419" y="44" width="6" height="9" fill="#dea584"/>
     <rect x="425" y="44" width="11" height="9" fill="#484f58"/>
@@ -63,7 +63,7 @@
   </text>
   <rect x="250" y="133" width="6" height="6" rx="1.5" fill="#563d7c"/>
   <text x="263" y="142" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="11">
-    <tspan fill="#24292f">CSS</tspan><tspan fill="#8b949e"> 2.7%</tspan>
+    <tspan fill="#24292f">CSS</tspan><tspan fill="#8b949e"> 2.6%</tspan>
   </text>
   <rect x="24" y="153" width="6" height="6" rx="1.5" fill="#dea584"/>
   <text x="37" y="162" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif" font-size="11">
