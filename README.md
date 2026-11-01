@@ -1,6 +1,9 @@
 <div align="center">
 
-<img src="./profile/butterflies.gif" alt="Seven delicate line-art butterflies drifting in a seamless loop" width="760" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile/butterflies-dark.webp" />
+  <img src="./profile/butterflies-light.webp" alt="Seven delicate butterflies banking and gliding in a seamless loop" width="760" />
+</picture>
 
 <br />
 
